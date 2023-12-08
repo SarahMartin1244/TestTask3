@@ -13,7 +13,7 @@ public class MartinSarahTestTask2 {
 
     // Test cases for the Period Class
     @Test
-        //Test case 1
+    //Test case 1
     void testValidPeriodConstructor24Hours() {
         // constructor for a valid 24 hour period
         Period period = new Period(0, 24);
@@ -236,15 +236,19 @@ public class MartinSarahTestTask2 {
     }
 
     // Rate Class Test Cases
-    @Test // test case 1
-    public void testValidInputNormalRateGreaterThanReducedRate() {
+        @Test // test case 1
+    public  void testValidInputNormalRateGreaterThanReducedRate() {
         //  when the normal rate is greater than the reduced rate
         Rate rate = new Rate(CarParkKind.VISITOR, BigDecimal.valueOf(10), BigDecimal.valueOf(5),
-                new ArrayList<Period>(), new ArrayList<Period>());
+                new ArrayList<>(Arrays.asList(new Period(1, 6))),
+                (ArrayList<Period>) new ArrayList<Period>());
         BigDecimal charge = rate.calculate(new Period(1, 6));
 
         assertEquals(BigDecimal.valueOf(50), charge);
+
     }
+
+
 
     @Test //test case 2
     public void testValidInputNormalRateEqualToReducedRate() {
