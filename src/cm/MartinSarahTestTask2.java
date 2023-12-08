@@ -255,7 +255,8 @@ public class MartinSarahTestTask2 {
         //  when the normal rate is equal to the reduced rate.
 
         Rate rate = new Rate(CarParkKind.VISITOR, BigDecimal.valueOf(10), BigDecimal.valueOf(10),
-                new ArrayList<Period>(), new ArrayList<Period>());
+                new ArrayList<>(Arrays.asList(new Period(1, 6))),
+                (ArrayList<Period>) new ArrayList<Period>());
         BigDecimal charge = rate.calculate(new Period(1, 6));
 
         assertEquals(BigDecimal.valueOf(50), charge);
