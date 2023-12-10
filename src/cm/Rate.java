@@ -126,6 +126,11 @@ public class Rate {
             }
         }
 
+        else if (kind == CarParkKind.STAFF) {
+            // Maximum payable is 10.00 per day
+            return totalCost.min(BigDecimal.valueOf(10));
+        }
+
         return totalCost;
 
     }
