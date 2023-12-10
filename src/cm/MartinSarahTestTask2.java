@@ -391,6 +391,23 @@ public class MartinSarahTestTask2 {
         assertEquals(new BigDecimal(42.00), charge);
     }
 
+     //Rate: New test cases for Student
+    @Test
+    public void testStudentWithReduction() {
+        // Rate for a Student car park
+        Rate rate = new Rate(CarParkKind.STUDENT, BigDecimal.valueOf(7), BigDecimal.valueOf(5),
+                new ArrayList<>(Arrays.asList(new Period(10, 14))),
+                new ArrayList<>());
+
+        BigDecimal charge = rate.calculate(new Period(10, 14));
+
+        assertEquals(new BigDecimal("12.925"), charge);
+    }
+
+
+
+
+
 
 
 
