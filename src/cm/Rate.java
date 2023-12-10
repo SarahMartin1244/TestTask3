@@ -111,7 +111,12 @@ public class Rate {
                 return visitorReductionThreshold.add(reductionAmount);
             }
         }
-        return totalCost;
+     else if (kind == CarParkKind.MANAGEMENT) {
+        // Minimum amount payable is 5.00
+        return totalCost.max(BigDecimal.valueOf(5.00));
+    }
+
+     return totalCost;
 
     }
 }
