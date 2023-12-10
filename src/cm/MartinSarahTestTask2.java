@@ -250,18 +250,25 @@ public class MartinSarahTestTask2 {
 
 
 
-    @Test //test case 2
+    @Test // test case 2
     public void testValidInputNormalRateEqualToReducedRate() {
-        //  when the normal rate is equal to the reduced rate.
+        // when the normal rate is equal to the reduced rate.
 
+        // Set up a Rate with normal rate equal to reduced rate and a VISITOR kind
         Rate rate = new Rate(CarParkKind.VISITOR, BigDecimal.valueOf(10), BigDecimal.valueOf(10),
                 new ArrayList<>(Arrays.asList(new Period(1, 6))),
-                (ArrayList<Period>) new ArrayList<Period>());
+                new ArrayList<>());
+
+        // Calculate the charge for a period resulting in a total cost of 15.00
         BigDecimal charge = rate.calculate(new Period(1, 6));
 
-        assertEquals(BigDecimal.valueOf(50), charge);
+        // Expected value: The first 10.00 is free, 50% reduction on the remaining 5.00
+        assertEquals(new BigDecimal("30.00"), charge);
+
     }
-    
+
+
+
     @Test // test case 4
     public void testInvalidInputNegativeNormalRate() {
         // Checks for exception when the normal rate is set to a negative value.
