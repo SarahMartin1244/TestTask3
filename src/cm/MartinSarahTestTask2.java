@@ -366,5 +366,18 @@ public class MartinSarahTestTask2 {
         });
     }
 
+    // Rate: New test cases for Management
+    @Test
+    public void testManagementNormalCostAboveMinimum() {
+        Rate rate = new Rate(CarParkKind.MANAGEMENT, BigDecimal.valueOf(8), BigDecimal.valueOf(5),
+                new ArrayList<>(Arrays.asList(new Period(8, 12))),
+                new ArrayList<>());
+        BigDecimal charge = rate.calculate(new Period(8, 12));
+
+        assertEquals(new BigDecimal(32.00), charge);
+    }
+
+
+
 
 }
