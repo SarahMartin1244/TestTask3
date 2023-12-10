@@ -87,11 +87,31 @@ public class Rate {
         }
         return isValid;
     }
+//    public BigDecimal calculate(Period periodStay) {
+//        int normalRateHours = periodStay.occurences(normal);
+//        int reducedRateHours = periodStay.occurences(reduced);
+//        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
+//                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+//    }
+
     public BigDecimal calculate(Period periodStay) {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-    }
+        BigDecimal totalCost = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))
+                .add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
 
+        if (kind == CarParkKind.VISITOR) {
+            // The first 10.00 is free then 50% reduction above that
+            BigDecimal visitorReductionThreshold = BigDecimal.valueOf(10.00);
+
+            // Check if the total cost is above the visitor reduction threshold
+            if (totalCost.compareTo(visitorReductionThreshold) > 0) {
+                BigDecimal reductionAmount = totalCost.subtract(visitorReductionThreshold)
+                        .multiply(BigDecimal.valueOf(0.5));
+                return visitorReductionThreshold.add(reductionAmount);
+            }
+        }
+        return totalCost;
+
+    }
 }
