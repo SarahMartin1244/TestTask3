@@ -111,12 +111,22 @@ public class Rate {
                 return visitorReductionThreshold.add(reductionAmount);
             }
         }
-     else if (kind == CarParkKind.MANAGEMENT) {
-        // Minimum amount payable is 5.00
-        return totalCost.max(BigDecimal.valueOf(5.00));
-    }
+        else if (kind == CarParkKind.MANAGEMENT) {
+            // Minimum amount payable is 5.00
+            return totalCost.max(BigDecimal.valueOf(5.00));
+        }
 
-     return totalCost;
+        else if (kind == CarParkKind.STUDENT) {
+            // 33 percent reduction on any amount above 5.50
+            BigDecimal studentReductionThreshold = BigDecimal.valueOf(5.50);
+            if (totalCost.compareTo(studentReductionThreshold) > 0) {
+                BigDecimal reductionAmount = totalCost.subtract(studentReductionThreshold)
+                        .multiply(BigDecimal.valueOf(0.33));
+                return studentReductionThreshold.add(reductionAmount);
+            }
+        }
+
+        return totalCost;
 
     }
 }
