@@ -377,6 +377,29 @@ public class MartinSarahTestTask2 {
         assertEquals(new BigDecimal(32.00), charge);
     }
 
+    @Test
+    public void testManagementNormalAndReducedPeriods() {
+        Rate rate = new Rate(CarParkKind.MANAGEMENT, BigDecimal.valueOf(8), BigDecimal.valueOf(5),
+                // ArrayList representing normal rate periods
+                new ArrayList<>(Arrays.asList(new Period(8, 12))),
+                // ArrayList representing reduced rate periods
+                new ArrayList<>(Arrays.asList(new Period(14, 16))));
+        // Calculate the charge for a combined period
+        BigDecimal charge = rate.calculate(new Period(8, 16));
+
+        assertEquals(new BigDecimal(42.00), charge);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
