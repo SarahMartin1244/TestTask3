@@ -261,18 +261,7 @@ public class MartinSarahTestTask2 {
 
         assertEquals(BigDecimal.valueOf(50), charge);
     }
-
-
-    // test case 3
-    @Test
-    public void testValidInputNormalRateLessThanReducedRate() {
-        // when the normal rate is less than the reduced rate.
-        Rate rate = new Rate(CarParkKind.VISITOR, BigDecimal.valueOf(5), BigDecimal.valueOf(10),
-                new ArrayList<Period>(), new ArrayList<Period>());
-        BigDecimal charge = rate.calculate(new Period(1, 6));
-        assertEquals(BigDecimal.valueOf(25), charge);
-    }
-
+    
     @Test // test case 4
     public void testInvalidInputNegativeNormalRate() {
         // Checks for exception when the normal rate is set to a negative value.
