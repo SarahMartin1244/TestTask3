@@ -387,8 +387,15 @@ public class MartinSarahTestTask2 {
         // Calculate the charge for a combined period
         BigDecimal charge = rate.calculate(new Period(8, 16));
 
+        //  Total cost based on normal rate (8.00 * 4) + reduced rate (5.00 * 2) = 42.00
         assertEquals(new BigDecimal(42.00), charge);
     }
+
+
+
+
+
+
 
 
 
